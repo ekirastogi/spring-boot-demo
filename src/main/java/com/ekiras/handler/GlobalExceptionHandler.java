@@ -22,4 +22,8 @@ public class GlobalExceptionHandler {
         return e.getMessage();
     }
 
+    @ExceptionHandler(value = Exception.class)
+    public String handleException(Exception e){return e.getMessage();}
+
+
 }
