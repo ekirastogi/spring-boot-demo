@@ -6,10 +6,10 @@ import com.ekiras.service.HomeService;
 import com.ekiras.util.EnvConfig;
 import com.ekiras.util.SampleConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.MessageSource;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Locale;
 
 /**
  * @author ekansh
@@ -22,11 +22,17 @@ public class HomeController {
     @Autowired private HomeService homeService;
     @Autowired private SampleConfig config;
     @Autowired private EnvConfig envConfig;
+    @Autowired private MessageSource messageSource;
 
 
     @RequestMapping({"","/","/home"})
     public String home(){
         return homeService.home();
+    }
+
+    @RequestMapping("/msg/{locale}")
+    public String msg(@PathVariable("locale") Locale locale){
+        return messageSource.getMessage("msg",null,locale);
     }
 
     @RequestMapping(value = "/about", method = RequestMethod.GET)
