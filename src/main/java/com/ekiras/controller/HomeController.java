@@ -3,6 +3,7 @@ package com.ekiras.controller;
 import com.ekiras.exception.CustomException1;
 import com.ekiras.exception.CustomException2;
 import com.ekiras.service.HomeService;
+import com.ekiras.util.EnvConfig;
 import com.ekiras.util.SampleConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,6 +21,7 @@ public class HomeController {
 
     @Autowired private HomeService homeService;
     @Autowired private SampleConfig config;
+    @Autowired private EnvConfig envConfig;
 
 
     @RequestMapping({"","/","/home"})
@@ -45,6 +47,11 @@ public class HomeController {
     @RequestMapping("/prop3")
     public String p3(){
         return config.getData3();
+    }
+
+    @RequestMapping("/env")
+    public String env(){
+        return envConfig.getEnv();
     }
 
     @RequestMapping("/e1")
