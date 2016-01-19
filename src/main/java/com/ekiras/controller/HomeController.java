@@ -1,5 +1,7 @@
 package com.ekiras.controller;
 
+import com.ekiras.service.HomeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,14 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("")
 public class HomeController {
 
+    @Autowired private HomeService homeService;
+
     @RequestMapping({"","/","/home"})
     public String home(){
-        return "Hello World";
+        return homeService.home();
     }
 
     @RequestMapping("/about")
     public String about(){
-        return "Spring Boot Introduction";
+        return homeService.about();
     }
-    
+
+
+
+
 }
