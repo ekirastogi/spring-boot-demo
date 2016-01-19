@@ -1,7 +1,10 @@
 package com.ekiras.controller;
 
+import com.ekiras.exception.CustomException1;
+import com.ekiras.exception.CustomException2;
 import com.ekiras.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +28,23 @@ public class HomeController {
     public String about(){
         return homeService.about();
     }
+
+    @RequestMapping("/e1")
+    public String e1(){
+        throw new CustomException1();
+    }
+
+    @RequestMapping("/e2")
+    public String e2(){
+        throw new CustomException2();
+    }
+
+
+    @ExceptionHandler(value = {CustomException1.class})
+    public String handle(CustomException1 customException1){
+        return customException1.getMessage();
+    }
+
 
 
 
