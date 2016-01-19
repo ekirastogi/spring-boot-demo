@@ -3,6 +3,7 @@ package com.ekiras.controller;
 import com.ekiras.exception.CustomException1;
 import com.ekiras.exception.CustomException2;
 import com.ekiras.service.HomeService;
+import com.ekiras.util.SampleConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
     @Autowired private HomeService homeService;
+    @Autowired private SampleConfig config;
+
 
     @RequestMapping({"","/","/home"})
     public String home(){
@@ -27,6 +30,21 @@ public class HomeController {
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String about(){
         return homeService.about();
+    }
+
+    @RequestMapping("/prop1")
+    public String p1(){
+        return config.getData1();
+    }
+
+    @RequestMapping("/prop2")
+    public String p2(){
+        return config.getData2();
+    }
+
+    @RequestMapping("/prop3")
+    public String p3(){
+        return config.getData3();
     }
 
     @RequestMapping("/e1")
