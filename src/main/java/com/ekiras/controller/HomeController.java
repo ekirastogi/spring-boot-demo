@@ -30,8 +30,8 @@ public class HomeController {
         return homeService.home();
     }
 
-    @RequestMapping("/msg/{locale}")
-    public String msg(@PathVariable("locale") Locale locale){
+    @RequestMapping("/msg")
+    public String msg(@RequestHeader("Accept-Language") Locale locale){
         return messageSource.getMessage("msg",null,locale);
     }
 
